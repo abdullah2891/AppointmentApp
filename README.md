@@ -8,6 +8,8 @@ We recommend that one of the tables contains 2 columns:
 
 To do: 
 1) Adding search functionality
+
 2) Forcing user to use correct Date format by using regex([/d\/d\/d] at the server side
+
 3)Making the server code more readable and modular
 and more
