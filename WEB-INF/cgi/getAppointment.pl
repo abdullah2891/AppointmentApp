@@ -18,7 +18,7 @@ my $password = "toor";
 my $dbh = DBI->connect($dsn, $userid, $password ) or die $DBI::errstr;
 
 
-my $sth = $dbh->prepare("SELECT DATE, APPOINTMENT
+my $sth = $dbh->prepare("SELECT DATE, APPOINTMENT,time
                         FROM SCHEDULE_DB");
 $sth->execute() or die $DBI::errstr;
 

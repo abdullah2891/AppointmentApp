@@ -26,9 +26,9 @@ my $password = "toor";
 my $dbh = DBI->connect($dsn, $userid, $password ) or die $DBI::errstr;
 
 my $sth = $dbh->prepare("INSERT INTO SCHEDULE_DB
-                       (DATE, APPOINTMENT )
+                       (DATE, APPOINTMENT,time )
                         values
-                       ('$date $time', '$appointment')");
+                       ('$date $time', '$appointment','$schedule_time')");
 $sth->execute() or die $DBI::errstr;
 
 my $CGI = new CGI();
