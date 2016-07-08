@@ -1,10 +1,6 @@
 use DBI;
 use strict ;
-use DateTime ;
 use CGI;
-use HTML::Template;
-
-
 
 my $driver = "mysql";
 my $cgi = CGI->new();
@@ -16,27 +12,25 @@ my $schedule_time = $cgi->param('schedule_time');
 my $database= "schedule_db";
 my $dsn = "DBI:$driver:database=$database";
 
-my $dt = DateTime->now;
-print $dt;
-my $date = $dt->ymd;
-my $time = $dt->hms;
 my $userid = "root";
 my $password = "toor";
 
 my $dbh = DBI->connect($dsn, $userid, $password ) or die $DBI::errstr;
 
-my $sth = $dbh->prepare("INSERT INTO SCHEDULE_DB
-                       (DATE, APPOINTMENT )
-                        values
-                       ('$date $time', '$appointment')");
+
+my $sth = $dbh->prepare("SELECT DATE, APPOINTMENT
+                        FROM SCHEDULE_DB");
 $sth->execute() or die $DBI::errstr;
 
-my $CGI = new CGI();
-my $templ = HTML::Template -> new (filename=>'home.tmpl');
+
+print "Number of rows found :" + $sth->rows +'\n';
 
 
-print $CGI->header();
-print $templ->output();
+print $cgi->header();
+while (my @row = $sth->fetchrow_array()) {
+   print "@row\n";
+}
+print $schedule_time;
 
 
 $sth->finish();
