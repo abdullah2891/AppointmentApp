@@ -3,14 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <title>Appointment App</title>
-</head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 <body>
+<div class="container-fluid">
 
-<form method = POST action="cgi-bin/schedule_model.pl">
-    Appointment:  <input type="text" name="appointment">
-    Date: <input type="text" name = "schedule_time">
-    <input type="submit" value="record">
-</form>
 
+  <form method = POST action="cgi-bin/schedule_model.pl">
+      Appointment:  <input type="text" name="appointment">
+      Date: <input type="text" name = "schedule_time">
+      <input class="btn btn-primary"type="submit" value="SAVE NEW APPOINTMENT">
+  </form>
+  <button class="btn btn-primary" style="margin-top:20px;">GET THE APPOINTMENTS</button>
+  <div id="list" class="panel panel-default"></div>
+</div>
+
+
+<script src="js/control.js"></script>
+<style>
+  .container-fluid{
+    margin: 20% 20% 20% 20%;
+    font-size: 1.8em;
+  }
+</style>
 </body>
 </html>
