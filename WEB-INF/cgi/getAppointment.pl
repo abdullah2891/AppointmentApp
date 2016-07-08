@@ -1,6 +1,7 @@
 use DBI;
 use strict ;
 use CGI;
+use JSON;
 
 my $driver = "mysql";
 my $cgi = CGI->new();
@@ -23,14 +24,19 @@ my $sth = $dbh->prepare("SELECT DATE, APPOINTMENT,time
 $sth->execute() or die $DBI::errstr;
 
 
-print "Number of rows found :" + $sth->rows +'\n';
+#print "Number of rows found :" + $sth->rows +'\n';
 
 
-print $cgi->header();
+my %response =();
+
+print $cgi->header("application/json");
+
 while (my @row = $sth->fetchrow_array()) {
-   print "@row\n";
+    my($date,$appointment,$Time) = @row;
+    $response{$Time}=$appointment;
 }
-print $schedule_time;
 
+my $json = encode_json \%response;
 
+print $json;
 $sth->finish();
