@@ -20,17 +20,21 @@ my $dt = DateTime->now;
 print $dt;
 my $date = $dt->ymd;
 my $time = $dt->hms;
+
 my $userid = "root";
 my $password = "toor";
 
 my $dbh = DBI->connect($dsn, $userid, $password ) or die $DBI::errstr;
 
+
 my $sth = $dbh->prepare("INSERT INTO SCHEDULE_DB
                        (DATE, APPOINTMENT,time )
                         values
                        ('$date $time', '$appointment','$schedule_time')");
+
 $sth->execute() or die $DBI::errstr;
 
+#cgi
 my $CGI = new CGI();
 my $templ = HTML::Template -> new (filename=>'home.tmpl');
 
