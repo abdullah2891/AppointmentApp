@@ -26,6 +26,7 @@ $sth->execute() or die $DBI::errstr;
 
 #print "Number of rows found :" + $sth->rows +'\n';
 
+#empty hash response
 
 my %response =();
 
